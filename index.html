@@ -28,6 +28,8 @@
         
     
     
+        <meta property="og:image" content="http://guachikuo.github.io/assets/images/headpic.jpg"/>
+    
     
     
     
@@ -43,8 +45,6 @@
             <!-- Define author's picture -->
 
 
-    
-
 <header id="header" data-behavior="1">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
@@ -52,9 +52,11 @@
     </div>
     
         
-            <a  class="header-right-picture "
-                href="#about">
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
         
+        
+            <i class="fa fa-lg fa-search"></i>
         
         </a>
     
@@ -63,8 +65,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="1">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/headpic.jpg" alt="Author&#39;s picture"/>
+                </a>
+                <h4 class="sidebar-profile-name">Chia Chi Kuo</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -145,19 +162,12 @@
         
             <ul class="sidebar-buttons">
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                        >
+                        <a  class="sidebar-button-link " href="https://github.com/guachikuo" target="_blank" rel="noopener">
                     
-                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
                     </a>
             </li>
             
@@ -180,15 +190,15 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
-                        <a class="link-unstyled" href="/2017/09/14/hello-world/">
-                            Hello World
+                        <a class="link-unstyled" href="/2017/09/15/feic1/">
+                            Frontend Intermediate Course 1
                         </a>
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-09-14T11:21:59+08:00">
+    <time itemprop="datePublished" datetime="2017-09-15T14:19:18+08:00">
 	
-		    Sep 14, 2017
+		    Sep 15, 2017
     	
     </time>
     
@@ -197,22 +207,27 @@
             </div>
             
                 <div class="postShorten-content" itemprop="articleBody">
-                    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+                    <p>&emsp;&emsp;給自己訂一個目標，想要在找工作這段時間，<strong>自己寫出一個簡單的網站</strong>，運氣也很好的在ptt看到胡立老師之前開了一個免費的課程，雖然之前沒機會參加，便還是決定從這裡下手，直接邊做邊學。 課程 <a href="https://github.com/aszx87410/frontend-intermediate-course" target="_blank" rel="external">Frontend Intermediate Course</a> 總共有十堂，每堂老師都有訂定一個這次要完成的目標，跟提供一些參考資料。<br>&emsp;&emsp;我的目標就是自己想盡辦法寫出一遍出來，然後再去看課程youtube做比較以及修正!</p>
+<p>–</p>
+<h4 id="作業一的Github連結-基本-HTML-CSS-練習：以-Twitch-為例"><a href="#作業一的Github連結-基本-HTML-CSS-練習：以-Twitch-為例" class="headerlink" title="作業一的Github連結: 基本 HTML/CSS 練習：以 Twitch 為例"></a>作業一的Github連結: <a href="https://github.com/aszx87410/frontend-intermediate-course/blob/master/homeworks/hw1.md" target="_blank" rel="external">基本 HTML/CSS 練習：以 Twitch 為例</a></h4><p>這個作業就是基本的使用HTML和CSS，去呈現這個樣子<br><img src="/2017/09/15/feic1/hw1_demo.png" alt="hw1_demo.png" title=""></p>
+<p>每個方塊做好，其實複製九個出來就可以了，不過最讓我傷腦筋的就是排版。雖然作業沒有要求RWD，但是我自己希望從一開始就達到RWD的效果，不然之後再改也很麻煩，所以不管是置中的問題，還是達到RWD的效果，確實花了點時間(自己有一段時間沒碰過HTML/CSS)。<br>作業規定每個方塊寬是300px，每行三個，總共三行九個。 看完<a href="https://internetingishard.com/html-and-css/floats" target="_blank" rel="external">Floats</a>後，我開始大量使用<code>float</code>。 </p>
+<ol>
+<li>利用<code>float:left;</code>，再去調整<code>margin</code>的比例去達到每行符合三個方塊的大小。</li>
+<li>方塊下面的圓圖配合文字也用這個方式，文字如果overflow就<code>overflow:hidden;</code><br>但是這個方法真的很難調整，不管是置中還是條間距，我自己也弄得不是很愛。</li>
+</ol>
+<p>後來再往下看就看到了<a href="https://internetingishard.com/html-and-css/flexbox/" target="_blank" rel="external">FlexBox</a>，發現flex在左右跟上下置中，比起之前用margin來的準確而且方便。我用兩層div去包九個broadcast<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">  	<span class="attribute">justify-content</span>: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.row</span>&#123;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-wrap</span>: wrap;</div><div class="line">	<span class="attribute">justify-content</span>: flex-start;</div><div class="line">	<span class="attribute">width</span>: <span class="number">1200px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.broadcast</span>&#123;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-wrap</span>: wrap;</div><div class="line">	<span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">	<span class="attribute">border-color</span>: <span class="built_in">rgba</span>(0,0,0,0);</div><div class="line">	<span class="attribute">border-style</span>: solid;</div><div class="line">	<span class="attribute">border-width</span>: <span class="number">20px</span> <span class="number">50px</span> <span class="number">30px</span> <span class="number">50px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>用了覺得調整方便很多，也因為<code>flex-wrap:wrap</code>所以如果overflow就往下一行擺。至於flexbox的特性會讓每個方塊間的空隙取消<br><img src="/2017/09/15/feic1/screenshot1.jpg" alt="screenshot1.jpg" title=""><br>所以我多加了<code>border-width</code>去隔開每個方塊，並調整成每行三個。<br>不過後來聽說用<code>grid</code>可能更方便，準備來研究一下<a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="external">A Complete Guide to Grid</a></p>
+<p>作業要求文字overflow時，需顯示 … ，如果只是一般的<code>overflow:hidden</code>，它就是直接讓文字消失。處理方式很簡單在css上面加上<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">white-space</span>: <span class="selector-tag">nowrap</span>;</div><div class="line"><span class="selector-tag">text-overflow</span>: <span class="selector-tag">ellipsis</span>;</div></pre></td></tr></table></figure></p>
+<p>它就會變成 … 了!</p>
+<p>因為自己真的一段時間沒碰過HTML/CSS，所以花了不少時間在重新回憶，慶幸的是還是把它寫出來了:)<br><img src="/2017/09/15/feic1/screenshot2.jpg" alt="screenshot2.jpg" title=""></p>
+<p>最後就分享一下我的程式 <a href="https://github.com/guachikuo/website_project/tree/master/hw1" target="_blank" rel="external">hw1_github</a><br>這只是我學習過程的紀錄而已，絕對不是正解，我也還在學習，可能錯誤還是很多，還請指教!</p>
 
                     
                         
                     
                     
                         <p>
-                            <a href="/2017/09/14/hello-world/#post-footer" class="postShorten-excerpt_link link">
+                            <a href="/2017/09/15/feic1/#post-footer" class="postShorten-excerpt_link link">
                                 Comment and share
                             </a>
                         </p>
@@ -246,11 +261,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-remove"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/headpic.jpg" alt="Author&#39;s picture"/>
         
             <h4 id="about-card-name">Chia Chi Kuo</h4>
         
@@ -265,6 +286,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Taiwan, Taipei
+            </div>
         
     </div>
 </div>
@@ -291,13 +318,13 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://guachikuo.github.io/2017/09/14/hello-world/">
-                            <h3 class="media-heading">Hello World</h3>
+                        <a class="link-unstyled" href="http://guachikuo.github.io/2017/09/15/feic1/">
+                            <h3 class="media-heading">Frontend Intermediate Course 1</h3>
                         </a>
                         <span class="media-meta">
                             <span class="media-date text-small">
                                 
-                                    Sep 14, 2017
+                                    Sep 15, 2017
                                 
                             </span>
                         </span>
