@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot2.jpg">
 <meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot3.jpg">
 <meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot4.jpg">
-<meta property="og:updated_time" content="2017-09-17T20:40:41.123Z">
+<meta property="og:updated_time" content="2017-09-18T12:45:20.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frontend Intermediate Course 4 (二)">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;這次的作業個人覺得是個很龐大的東西，不是要做的東西很多，是要學的新東西真的不少，所以決定多開一篇出來紀錄一下。 &amp;emsp;&amp;emsp;1. 首先是談到AJAX這個詞中的Asychronous，它是一個大重點，中文的意思就是非同步，如果今天是同步的話會發生甚麼事? 假設有一段code123console.log(&quot;hi&quot;);跟Twitch API拿資料;console.lo">
@@ -179,7 +179,7 @@
 <p>&emsp;&emsp;如果是同步，程式就會一直留在第二行等response，才會繼續跑，整個網頁開起來就會很像當掉的樣子。但這不會是我們要的樣子，所以我們會需要非同步，在等資料的同時先去做其他事，等資料來了我們再去接收。這時候又有個問題，它在做其他事時，怎麼知道甚麼時候要去拿資料? <strong>是因為有個callback function</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"hi"</span>);</div><div class="line">twitchAPI(data, funuction(response)&#123;</div><div class="line">	<span class="keyword">do</span> something</div><div class="line">	&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"ya"</span>);</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;後面那個function(response)就是callback function，當我送完request就先往下做，等到respnse來了，我再去執行callback function。</p>
 <p>&emsp;&emsp;2. 這篇作業一開始寫起來會覺得，那我不就可以到處要資料嗎? 其實並不是所有的api都可以直接拿，假如我隨便跟一個網站請求資料，通常會收到<br><img src="/2017/09/18/feic4-2/screenshot1.jpg" alt="screenshot1.jpg" title=""><br>那是因為browser有個安全性考量的限制<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Same_origin_policy_for_JavaScript" target="_blank" rel="external">Same Origin Policy</a>，意思是browser有個限制，今天你要送request的時候只能送給同domain name的，如果你要跨網域送request的話，browser會擋掉，就會出現上圖的錯誤。</p>
-<p>如果想要突破，方法有兩種<br>(1) <strong>JSONP (JSON with Padding)</strong> : 它的原理就是<code>&lt;script&gt;</code>標籤可以跨網域。 跨網域的限制上還是有些例外，例如<code>&lt;script&gt;,&lt;img&gt;</code>這些，我們在寫網頁的時候有時候會需要別人網站的圖片，或是他們的jacascript <code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;</code> ，如果這些東西也限制，就真的太不方便。 twitch api 這邊也提供了利用JSONP送request給他們的方法<br><img src="/2017/09/18/feic4-2/screenshot2.jpg" alt="screenshot2.jpg" title=""><br>我們就來試試，看看結果<br><figure class="codeblock codeblock--tabbed"><figcaption><span>example</span><ul class="tabs"><li class="tab active">html</li><li class="tab">javascript</li></ul></figcaption><div class="tabs-content"><figure class="highlight html" style="display: block;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&amp;client_id=6515p95jb9xihs3dg4w1d05ck6vy8n&amp;limit=2&amp;callback=hello"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><figure class="highlight javascript" style="display: none;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"hihihihi"</span>);</span><br></pre></td></tr></tbody></table></figure></div></figure></p>
+<p>如果想要突破，方法有兩種<br>(1) <strong>JSONP (JSON with Padding)</strong> : 它的原理就是<code>&lt;script&gt;</code>標籤可以跨網域。 跨網域的限制上還是有些例外，例如<code>&lt;script&gt;,&lt;img&gt;</code>這些，我們在寫網頁的時候有時候會需要別人網站的圖片，或是他們的jacascript <code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;</code> ，如果這些東西也限制，就真的太不方便。 twitch api 這邊也提供了利用JSONP送request給他們的方法<br><img src="/2017/09/18/feic4-2/screenshot2.jpg" alt="screenshot2.jpg" title=""><br>我們就來試試，看看結果<br><figure class="codeblock codeblock--tabbed"><figcaption><span>example</span><ul class="tabs"><li class="tab active">html</li><li class="tab">javascript</li></ul></figcaption><div class="tabs-content"><figure class="highlight html" style="display: block;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&amp;client_id=6515p95jb9xihs3dg4w1d05ck6vy8n&amp;limit=2&amp;callback=hello"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><figure class="highlight javascript" style="display: none;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>{</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"hihihihi"</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></div></figure></p>
 <img src="/2017/09/18/feic4-2/screenshot3.jpg" alt="screenshot3.jpg" title="">
 <p>&emsp;&emsp;JSONP另一個重要的是<strong>它會需要server-side那邊做支援</strong>，像是Twitch就有提供支援，callback funtion裡call的是甚麼，它就會執行甚麼，如果我今天想要執行的東西，server那邊不支援也沒有用。</p>
 <p>(2) <strong>CORS(Cross-Origin Resource Sharing)</strong> : 這裡有一篇文章寫得很清楚<a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">HTTP 存取控制（CORS</a>。 當我們Cross-Origin requests時，會透過CORS做控制，當中的repsponse header(以twitch為例)<br><img src="/2017/09/18/feic4-2/screenshot4.jpg" alt="screenshot4.jpg" title=""><br>我們可以看到第一行是<code>access-control-allow-origin:*</code>，* 表示允許任何網域跨站存取資源。 那如果只允許來自kuoandy1.com的request，就會變成回傳<code>access-control-allow-origin: kuoandy1.com</code>。</p>
@@ -202,7 +202,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/18/feic5/"  data-tooltip="Frontend Intermediate Course 5">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -284,7 +284,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/18/feic5/"  data-tooltip="Frontend Intermediate Course 5">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -538,6 +538,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://guachikuo.github.io/2017/09/18/feic5/">
+                            <h3 class="media-heading">Frontend Intermediate Course 5</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Sep 18, 2017
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h4 id="作業五的Github連結-placeholder-與-infinite-scroll"><a href="#作業五的Github連結-placeholder-與-infinite-scroll" class="headerlink" title="作業五的Github連結: placeholder 與 infinite scroll"></a>作業五的Github連結: <a href="https://github.com/aszx87410/frontend-intermediate-course/blob/master/homeworks/hw5.md" target="_blank" rel="external">placeholder 與 infinite scroll</a></h4><p>&emsp;&emsp;這次的作業老實說比較沒有頭緒一點，infinite scroll看完參考資料大概有點想法，想法就是當我scroll到最下面時，我就再去抓資料然後append，可以利用<code>limit</code>跟<code>offset</code>去做控制，limit=n在twitch api裡代表我這次要抓<strong>n個資料</strong>，offset的意思就是<strong>從第n+1個開始拿</strong>。 如此一來我可以利用變數index，當我讀一批假設limit=9的資料 offset就加9，所以下次會從第十筆開始拿以此類推。<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -545,7 +564,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                5 posts found
+                6 posts found
             </p>
         </div>
     </div>
