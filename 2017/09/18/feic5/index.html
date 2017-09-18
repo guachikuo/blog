@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Guachi&#39;s Blog">
 <meta property="og:description" content="作業五的Github連結: placeholder 與 infinite scroll&amp;emsp;&amp;emsp;這次的作業老實說比較沒有頭緒一點，infinite scroll看完參考資料大概有點想法，想法就是當我scroll到最下面時，我就再去抓資料然後append，可以利用limit跟offset去做控制，limit=n在twitch api裡代表我這次要抓n個資料，offset的意思就是從第n">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-18T13:52:25.960Z">
+<meta property="og:updated_time" content="2017-09-18T14:00:28.403Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frontend Intermediate Course 5">
 <meta name="twitter:description" content="作業五的Github連結: placeholder 與 infinite scroll&amp;emsp;&amp;emsp;這次的作業老實說比較沒有頭緒一點，infinite scroll看完參考資料大概有點想法，想法就是當我scroll到最下面時，我就再去抓資料然後append，可以利用limit跟offset去做控制，limit=n在twitch api裡代表我這次要抓n個資料，offset的意思就是從第n">
@@ -183,7 +183,7 @@
 <li>其實我只要在這樣寫即可<code>&lt;img src=&quot; &quot; onload=&quot;this.style.opacity=1&quot;/&gt;</code>，直接連javscript都不用再多寫一個function出來。</li>
 <li>可以使用<code>:before</code>這個Pseudo Element，它可以讓我不用多建一個<code>&lt;div class=&quot;placeholder&quot;&gt;&lt;/div&gt;</code>也有一樣效果，意思就是我不需要在html程式碼中寫出來，但是他還是會透過<code>before</code>呈現出來，詳細的內容可以看<a href="https://css-tricks.com/almanac/selectors/a/after-and-before/" target="_blank" rel="external">css tricks</a>和<a href="https://developer.mozilla.org/zh-TW/docs/Web/CSS/::before" target="_blank" rel="external">before介紹</a>。</li>
 <li>我在使用z-index時，發現一直沒有達到我想要的效果，z-index=1不會蓋過去z-index=0，一查才發現原來<strong>z-index一定要搭配position才有作用</strong>，placeholder那邊我本來就有寫position: absolute，因為我要讓他跟我的img在同個位子。 但是img就沒有寫上position: relative，也難怪z-index一直沒有作用</li>
-<li>雖然我們使用了placeholder，但是placeholder也是圖片，也需要載入時間，如果我們想要優化它，一個方法就是自己搬到資料夾底下，另一個方法就可以使用<a href="https://www.base64-image.de/" target="_blank" rel="external"><strong>base64</strong></a>，它的原理就是把圖片encode成字串的形式。</li>
+<li>雖然我們使用了placeholder，但是placeholder也是圖片，也需要載入時間，如果我們想要優化它，一個方法就是自己搬到資料夾底下，另一個方法就可以使用<a href="https://www.base64-image.de/" target="_blank" rel="external"><strong>base64</strong></a>，它的原理就是把圖片encode成字串的形式，不過他也有些限制，大圖片無法使用。</li>
 </ol>
 <p>又是學到很多東西的一次作業: <a href="https://github.com/guachikuo/website_project/tree/master/hw5" target="_blank" rel="external">hw5_github</a></p>
 
