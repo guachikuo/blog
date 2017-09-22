@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Guachi&#39;s Blog">
 <meta property="og:description" content="作業五的Github連結: placeholder 與 infinite scroll&amp;emsp;&amp;emsp;這次的作業老實說比較沒有頭緒一點，infinite scroll看完參考資料大概有點想法，想法就是當我scroll到最下面時，我就再去抓資料然後append，可以利用limit跟offset去做控制，limit=n在twitch api裡代表我這次要抓n個資料，offset的意思就是從第n">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-18T14:02:38.022Z">
+<meta property="og:updated_time" content="2017-09-20T05:48:42.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frontend Intermediate Course 5">
 <meta name="twitter:description" content="作業五的Github連結: placeholder 與 infinite scroll&amp;emsp;&amp;emsp;這次的作業老實說比較沒有頭緒一點，infinite scroll看完參考資料大概有點想法，想法就是當我scroll到最下面時，我就再去抓資料然後append，可以利用limit跟offset去做控制，limit=n在twitch api裡代表我這次要抓n個資料，offset的意思就是從第n">
@@ -185,7 +185,7 @@
 <li>我在使用z-index時，發現一直沒有達到我想要的效果，z-index=1不會蓋過去z-index=0，一查才發現原來<strong>z-index一定要搭配position才有作用</strong>，placeholder那邊我本來就有寫position: absolute，因為我要讓他跟我的img在同個位子。 但是img就沒有寫上position: relative，也難怪z-index一直沒有作用</li>
 <li>雖然我們使用了placeholder，但是placeholder也是圖片，也需要載入時間，如果我們想要優化它，一個方法就是自己搬到資料夾底下，另一個方法就可以使用<a href="https://www.base64-image.de/" target="_blank" rel="external"><strong>base64</strong></a>，它的原理就是把圖片encode成字串的形式。 缺點就是它會把圖片大小變大，而大圖片也無法使用。</li>
 </ol>
-<p>又是學到很多東西的一次作業: <a href="https://github.com/guachikuo/website_project/tree/master/hw5" target="_blank" rel="external">hw5_github</a></p>
+<p>又是學到很多東西的一次作業: <a href="https://github.com/guachikuo/website_project/tree/master/hw/hw5" target="_blank" rel="external">hw5_github</a></p>
 
             
         </div>
@@ -573,6 +573,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://guachikuo.github.io/2017/09/22/login1/">
+                            <h3 class="media-heading">後端能力培養(一) - 實作簡單登入系統</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Sep 22, 2017
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>&emsp;&emsp;其實自己在開始寫前端網頁之前，我是先加入一個後端能力培養的讀書會(一樣是胡立老師開的)，他不像前面的課程，有一堂一堂作業給大家，接著有YOUTUBE講解。讀書會顧名思義就是放給大家去討論，胡立有列了方向給大家一步一步去學，剩下就是自己去上網找資源。<br>&emsp;&emsp;前陣子把前端網頁學了一個進度後，決定在這個小空檔，寫一個簡單登入系統出來，之後在慢慢繼續加功能上去，最後可以配合上我前端寫出來的網頁。<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -580,7 +599,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                7 posts found
+                8 posts found
             </p>
         </div>
     </div>

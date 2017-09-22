@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://guachikuo.github.io/2017/09/17/feic4/screenshot2.jpg">
 <meta property="og:image" content="http://guachikuo.github.io/2017/09/17/feic4/screenshot3.jpg">
 <meta property="og:image" content="http://guachikuo.github.io/2017/09/17/feic4/screenshot4.jpg">
-<meta property="og:updated_time" content="2017-09-18T11:34:12.515Z">
+<meta property="og:updated_time" content="2017-09-20T05:49:25.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frontend Intermediate Course 4 (一)">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;這次的作業是我一直很想學的東西，利用jQuery的AJAX(Asychronous Javascript and XML)去跟api串接資料，簡單說就是去提供API的地方抓資料來給自己開發。 AJAX這個名詞算是聽過很多次，這次總算要實際去學，內心是非常興奮。  作業四的Github連結: 從假資料到真資料：Ajax 與 API 串接&amp;emsp;&amp;emsp;這次作業要抓的資">
@@ -184,7 +184,7 @@
 <p>&emsp;&emsp;到這邊原本想說一步一步慢慢來，不過在這邊抓資料的方法都一樣了，就決定一次全部把它寫完。 在第二部影片有教到怎麼把ajax抓到的資料丟進去html中，就是利用<code>append</code>，所以我把html中broadcast的部分都刪掉，剩下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"head_text"</span>&gt;</span>Twitch<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span>		</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;row下面的20個broadcast就用Javascript去append。 不過在append之前，我發現我之前的寫法會造成一個問題，因為我的圖片是用css的background，所以就算我每append一個broadcast，就去改css中它的background圖檔，但是前一個background就會被後一個append的蓋掉，所以最後大家的圖都長一樣，當然我也可以把每個class的名稱都改不一樣，但這不是我想要的結果而且很麻煩，也有可能其實也有方便的解法，只是我暫時不知道。<br>&emsp;&emsp;我現在的解法就是把圖片從backgorund拿走，重新在div下新增<code>&lt;img&gt;</code>，這樣我就可以靈活地放圖片了! 再來就可以開始用JS去append<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	method: <span class="string">"GET"</span>,</div><div class="line">	url: apiURL,</div><div class="line">	success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;limit;i++)&#123;</div><div class="line">			<span class="keyword">var</span> link = data.streams[i].channel.url;</div><div class="line">			<span class="keyword">var</span> preview = data.streams[i].preview.medium;</div><div class="line">			<span class="keyword">var</span> logo = data.streams[i].channel.logo;</div><div class="line">			<span class="keyword">var</span> channel_name = data.streams[i].channel.status;</div><div class="line">			<span class="keyword">var</span> display_name = data.streams[i].channel.display_name;</div><div class="line">			$(<span class="string">'.row'</span>).append(</div><div class="line">				<span class="string">'&lt;div class="broadcast"&gt;'</span> +</div><div class="line">					<span class="string">'&lt;a href="'</span> + link + <span class="string">'" target="_blank"&gt;'</span> +</div><div class="line">						<span class="string">'&lt;div class="channel"&gt;'</span> +</div><div class="line">							<span class="string">'&lt;img src="'</span> + preview +<span class="string">'"&gt;'</span> +</div><div class="line">						<span class="string">'&lt;/div&gt;'</span> +</div><div class="line">						<span class="string">'&lt;div class="twitcher"&gt;'</span> +</div><div class="line">							<span class="string">'&lt;div class="pic_box"&gt;'</span> +</div><div class="line">								<span class="string">'&lt;img src="'</span> + logo + <span class="string">'"&gt;'</span> +</div><div class="line">							<span class="string">'&lt;/div&gt;'</span> +</div><div class="line">							<span class="string">'&lt;div class="info"&gt;'</span> +</div><div class="line">								<span class="string">'&lt;div class="twitch_channel"&gt;'</span> + channel_name + <span class="string">'&lt;/div&gt;'</span> +</div><div class="line">								<span class="string">'&lt;div class="twitcher_name"&gt;'</span> + display_name + <span class="string">'&lt;/div&gt;'</span> +</div><div class="line">							<span class="string">'&lt;/div&gt;'</span> +</div><div class="line">						<span class="string">'&lt;/div&gt;'</span> +</div><div class="line">					<span class="string">'&lt;/a&gt;'</span> +</div><div class="line">				<span class="string">'&lt;/div&gt;'</span>	</div><div class="line">			);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;抓了五項我想要的資料’(link,preview,logo,channel_name,display_name)’後，就用串字串的方式輸出給HTML，看一下最後的成果<br><img src="/2017/09/17/feic4/screenshot4.jpg" alt="screenshot4.jpg" title=""></p>
-<p>&emsp;&emsp;做出來的成就感其實蠻高的，不過感覺還有很多可以優化和修改的地方，再來就是和胡立老師的做法做比對學習了! 最後就分享一下我hw4的程式 <a href="https://github.com/guachikuo/website_project/tree/master/hw4" target="_blank" rel="external">hw4_github</a>，我也還只是新手，可能中間其實有很多錯誤，還請指教!</p>
+<p>&emsp;&emsp;做出來的成就感其實蠻高的，不過感覺還有很多可以優化和修改的地方，再來就是和胡立老師的做法做比對學習了! 最後就分享一下我hw4的程式 <a href="https://github.com/guachikuo/website_project/tree/master/hw/hw4" target="_blank" rel="external">hw4_github</a>，我也還只是新手，可能中間其實有很多錯誤，還請指教!</p>
 
             
         </div>
@@ -572,6 +572,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://guachikuo.github.io/2017/09/22/login1/">
+                            <h3 class="media-heading">後端能力培養(一) - 實作簡單登入系統</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Sep 22, 2017
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>&emsp;&emsp;其實自己在開始寫前端網頁之前，我是先加入一個後端能力培養的讀書會(一樣是胡立老師開的)，他不像前面的課程，有一堂一堂作業給大家，接著有YOUTUBE講解。讀書會顧名思義就是放給大家去討論，胡立有列了方向給大家一步一步去學，剩下就是自己去上網找資源。<br>&emsp;&emsp;前陣子把前端網頁學了一個進度後，決定在這個小空檔，寫一個簡單登入系統出來，之後在慢慢繼續加功能上去，最後可以配合上我前端寫出來的網頁。<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -579,7 +598,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                7 posts found
+                8 posts found
             </p>
         </div>
     </div>

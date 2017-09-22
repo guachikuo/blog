@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Guachi&#39;s Blog">
 <meta property="og:description" content="作業三的Github連結: 寫 CSS 必備神器：CSS 預處理器這個作業就很好玩了，需要我們去學CSS預處理器(CSS Preprocessor)，目前最常見的就三個  Sass 要run Sass的話需要去下載Ruby Less 它是用Javascript寫的，所以需要去下載Node.js Stylus 也是需要Node.js，相較於前面兩個是比較新的  最後我選擇了Less，因為我自己已經有">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-17T08:20:16.065Z">
+<meta property="og:updated_time" content="2017-09-20T05:49:16.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frontend Intermediate Course 2 &amp; 3 (二)">
 <meta name="twitter:description" content="作業三的Github連結: 寫 CSS 必備神器：CSS 預處理器這個作業就很好玩了，需要我們去學CSS預處理器(CSS Preprocessor)，目前最常見的就三個  Sass 要run Sass的話需要去下載Ruby Less 它是用Javascript寫的，所以需要去下載Node.js Stylus 也是需要Node.js，相較於前面兩個是比較新的  最後我選擇了Less，因為我自己已經有">
@@ -177,7 +177,7 @@
 <p>最後我選擇了Less，因為我自己已經有Node.js，Less也相對比Stylus較多人在用<br><a id="more"></a><br><strong>用完感想: 用過就會發現preprocessor的好</strong><br>&emsp;&emsp;可以省去自己寫css的很多麻煩，比如有個css是這樣，我希望test2的div大小是test的四分之一，當我hover，寬就長大跟test一樣寬。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.test</span>&#123;</div><div class="line">	<span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">	<span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.test</span> <span class="selector-class">.test2</span>&#123;</div><div class="line">	<span class="attribute">width</span>:<span class="number">50px</span>;</div><div class="line">	<span class="attribute">height</span>:<span class="number">50px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.test</span> <span class="selector-class">.test2</span><span class="selector-pseudo">:hover</span>&#123;</div><div class="line">	<span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;會發現我需要一直重複打parent的class name，然後一直重複打雷同的寬高。 這時候如果先透過preprocessor就可以看出顯著的方便性!<br>例如Less的副檔名是<code>.less</code>，我就可以直接這樣寫一個test.less<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@default_w :</span> <span class="number">100</span>;</div><div class="line"><span class="variable">@default_h :</span> <span class="number">100</span>;</div><div class="line"></div><div class="line"><span class="selector-class">.test</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="variable">@default_w</span> px;</div><div class="line">	<span class="attribute">height</span>:<span class="variable">@default_h</span> px;</div><div class="line">	<span class="selector-class">.test2</span>&#123;</div><div class="line">		<span class="attribute">width</span>: <span class="variable">@default_w</span>/<span class="number">2</span> px;</div><div class="line">		<span class="attribute">height</span>: <span class="variable">@default_h</span>/<span class="number">2</span> px;</div><div class="line"></div><div class="line">		<span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span>&#123;</div><div class="line">			<span class="attribute">width</span>: <span class="variable">@default_w</span> px;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;之後在terminal上打上<code>lessc test.less test.css</code>它就會編譯成上面css的樣子，好處是我像寫code一樣直接巢狀往下寫，而且當我要改變div test的大小我直接改變變數即可，不用像css一樣一個一個慢慢修，自己用過的感覺真的非常愛!</p>
-<p>&emsp;&emsp;學到新東西的心情就非常好，最後就分享一下我hw2和hw3的程式 <a href="https://github.com/guachikuo/website_project/tree/master/hw2&amp;hw3" target="_blank" rel="external">hw2&amp;hw3_github</a><br>這只是我學習過程的紀錄而已，絕對不是正解，我也還在學習，可能錯誤還是很多，還請指教!</p>
+<p>&emsp;&emsp;學到新東西的心情就非常好，最後就分享一下我hw2和hw3的程式 <a href="https://github.com/guachikuo/website_project/tree/master/hw/hw2&amp;hw3" target="_blank" rel="external">hw2&amp;hw3_github</a><br>這只是我學習過程的紀錄而已，絕對不是正解，我也還在學習，可能錯誤還是很多，還請指教!</p>
 
             
         </div>
@@ -565,6 +565,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://guachikuo.github.io/2017/09/22/login1/">
+                            <h3 class="media-heading">後端能力培養(一) - 實作簡單登入系統</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Sep 22, 2017
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>&emsp;&emsp;其實自己在開始寫前端網頁之前，我是先加入一個後端能力培養的讀書會(一樣是胡立老師開的)，他不像前面的課程，有一堂一堂作業給大家，接著有YOUTUBE講解。讀書會顧名思義就是放給大家去討論，胡立有列了方向給大家一步一步去學，剩下就是自己去上網找資源。<br>&emsp;&emsp;前陣子把前端網頁學了一個進度後，決定在這個小空檔，寫一個簡單登入系統出來，之後在慢慢繼續加功能上去，最後可以配合上我前端寫出來的網頁。<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -572,7 +591,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                7 posts found
+                8 posts found
             </p>
         </div>
     </div>
