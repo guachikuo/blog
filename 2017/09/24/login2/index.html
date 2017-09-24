@@ -6,29 +6,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Guachi&#39;s Blog">
-    <title>Frontend Intermediate Course 4 (二) - Guachi&#39;s Blog</title>
+    <title>後端能力培養(二) - 實作簡單登入系統 - Guachi&#39;s Blog</title>
     <meta name="author" content="Chia Chi Kuo">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="&amp;emsp;&amp;emsp;這次的作業個人覺得是個很龐大的東西，不是要做的東西很多，是要學的新東西真的不少，所以決定多開一篇出來紀錄一下。 &amp;emsp;&amp;emsp;1. 首先是談到AJAX這個詞中的Asychronous，它是一個大重點，中文的意思就是非同步，如果今天是同步的話會發生甚麼事? 假設有一段code123console.log(&quot;hi&quot;);跟Twitch API拿資料;console.lo">
+    <meta name="description" content="上次完成簡單登入系統後，就忍不住想繼續加功能，這次的加強我主要完成三件事  使用cookie/session 幫密碼的儲存加密 防止SQL Injection和XSS">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Frontend Intermediate Course 4 (二)">
-<meta property="og:url" content="http://guachikuo.github.io/2017/09/18/feic4-2/index.html">
+<meta property="og:title" content="後端能力培養(二) - 實作簡單登入系統">
+<meta property="og:url" content="http://guachikuo.github.io/2017/09/24/login2/index.html">
 <meta property="og:site_name" content="Guachi&#39;s Blog">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;這次的作業個人覺得是個很龐大的東西，不是要做的東西很多，是要學的新東西真的不少，所以決定多開一篇出來紀錄一下。 &amp;emsp;&amp;emsp;1. 首先是談到AJAX這個詞中的Asychronous，它是一個大重點，中文的意思就是非同步，如果今天是同步的話會發生甚麼事? 假設有一段code123console.log(&quot;hi&quot;);跟Twitch API拿資料;console.lo">
+<meta property="og:description" content="上次完成簡單登入系統後，就忍不住想繼續加功能，這次的加強我主要完成三件事  使用cookie/session 幫密碼的儲存加密 防止SQL Injection和XSS">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot1.jpg">
-<meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot2.jpg">
-<meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot3.jpg">
-<meta property="og:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot4.jpg">
-<meta property="og:updated_time" content="2017-09-18T12:45:20.786Z">
+<meta property="og:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot1.jpg">
+<meta property="og:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot2.jpg">
+<meta property="og:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot3.jpg">
+<meta property="og:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot4.jpg">
+<meta property="og:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot5.jpg">
+<meta property="og:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot6.jpg">
+<meta property="og:updated_time" content="2017-09-24T15:20:21.294Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Frontend Intermediate Course 4 (二)">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;這次的作業個人覺得是個很龐大的東西，不是要做的東西很多，是要學的新東西真的不少，所以決定多開一篇出來紀錄一下。 &amp;emsp;&amp;emsp;1. 首先是談到AJAX這個詞中的Asychronous，它是一個大重點，中文的意思就是非同步，如果今天是同步的話會發生甚麼事? 假設有一段code123console.log(&quot;hi&quot;);跟Twitch API拿資料;console.lo">
-<meta name="twitter:image" content="http://guachikuo.github.io/2017/09/18/feic4-2/screenshot1.jpg">
+<meta name="twitter:title" content="後端能力培養(二) - 實作簡單登入系統">
+<meta name="twitter:description" content="上次完成簡單登入系統後，就忍不住想繼續加功能，這次的加強我主要完成三件事  使用cookie/session 幫密碼的儲存加密 防止SQL Injection和XSS">
+<meta name="twitter:image" content="http://guachikuo.github.io/2017/09/24/login2/screenshot1.jpg">
     
     
         
@@ -155,14 +157,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Frontend Intermediate Course 4 (二)
+            後端能力培養(二) - 實作簡單登入系統
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-09-18T00:43:17+08:00">
+    <time itemprop="datePublished" datetime="2017-09-24T01:41:03+08:00">
 	
-		    Sep 18, 2017
+		    Sep 24, 2017
     	
     </time>
     
@@ -173,23 +175,32 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>&emsp;&emsp;這次的作業個人覺得是個很龐大的東西，不是要做的東西很多，是要學的新東西真的不少，所以決定多開一篇出來紀錄一下。</p>
-<p>&emsp;&emsp;1. 首先是談到AJAX這個詞中的Asychronous，它是一個大重點，中文的意思就是非同步，如果今天是同步的話會發生甚麼事? 假設有一段code<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"hi"</span>);</div><div class="line">跟Twitch API拿資料;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"ya"</span>);</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>&emsp;&emsp;如果是同步，程式就會一直留在第二行等response，才會繼續跑，整個網頁開起來就會很像當掉的樣子。但這不會是我們要的樣子，所以我們會需要非同步，在等資料的同時先去做其他事，等資料來了我們再去接收。這時候又有個問題，它在做其他事時，怎麼知道甚麼時候要去拿資料? <strong>是因為有個callback function</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"hi"</span>);</div><div class="line">twitchAPI(data, funuction(response)&#123;</div><div class="line">	<span class="keyword">do</span> something</div><div class="line">	&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"ya"</span>);</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;後面那個function(response)就是callback function，當我送完request就先往下做，等到respnse來了，我再去執行callback function。</p>
-<p>&emsp;&emsp;2. 這篇作業一開始寫起來會覺得，那我不就可以到處要資料嗎? 其實並不是所有的api都可以直接拿，假如我隨便跟一個網站請求資料，通常會收到<br><img src="/2017/09/18/feic4-2/screenshot1.jpg" alt="screenshot1.jpg" title=""><br>那是因為browser有個安全性考量的限制<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Same_origin_policy_for_JavaScript" target="_blank" rel="external">Same Origin Policy</a>，意思是browser有個限制，今天你要送request的時候只能送給同domain name的，如果你要跨網域送request的話，browser會擋掉，就會出現上圖的錯誤。</p>
-<p>如果想要突破，方法有兩種<br>(1) <strong>JSONP (JSON with Padding)</strong> : 它的原理就是<code>&lt;script&gt;</code>標籤可以跨網域。 跨網域的限制上還是有些例外，例如<code>&lt;script&gt;,&lt;img&gt;</code>這些，我們在寫網頁的時候有時候會需要別人網站的圖片，或是他們的jacascript <code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;</code> ，如果這些東西也限制，就真的太不方便。 twitch api 這邊也提供了利用JSONP送request給他們的方法<br><img src="/2017/09/18/feic4-2/screenshot2.jpg" alt="screenshot2.jpg" title=""><br>我們就來試試，看看結果<br><figure class="codeblock codeblock--tabbed"><figcaption><span>example</span><ul class="tabs"><li class="tab active">html</li><li class="tab">javascript</li></ul></figcaption><div class="tabs-content"><figure class="highlight html" style="display: block;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&amp;client_id=6515p95jb9xihs3dg4w1d05ck6vy8n&amp;limit=2&amp;callback=hello"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><figure class="highlight javascript" style="display: none;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>{</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"hihihihi"</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></div></figure></p>
-<img src="/2017/09/18/feic4-2/screenshot3.jpg" alt="screenshot3.jpg" title="">
-<p>&emsp;&emsp;JSONP另一個重要的是<strong>它會需要server-side那邊做支援</strong>，像是Twitch就有提供支援，callback funtion裡call的是甚麼，它就會執行甚麼，如果我今天想要執行的東西，server那邊不支援也沒有用。</p>
-<p>(2) <strong>CORS(Cross-Origin Resource Sharing)</strong> : 這裡有一篇文章寫得很清楚<a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">HTTP 存取控制（CORS</a>。 當我們Cross-Origin requests時，會透過CORS做控制，當中的repsponse header(以twitch為例)<br><img src="/2017/09/18/feic4-2/screenshot4.jpg" alt="screenshot4.jpg" title=""><br>我們可以看到第一行是<code>access-control-allow-origin:*</code>，* 表示允許任何網域跨站存取資源。 那如果只允許來自kuoandy1.com的request，就會變成回傳<code>access-control-allow-origin: kuoandy1.com</code>。</p>
-<p>&emsp;&emsp;後面還有提到<code>preflight request</code>，如果只是簡單請求(文章中有提到哪些條件是簡單請求)就不會觸發preflight，那如果今天符合preflight request，”preflight request會先以 HTTP 的 OPTIONS 方法送出請求到另一個網域，確認後續真實請求是否可安全送出，由於跨站請求可能會攜帶使用者資料，所以要先進行預檢請求”。</p>
-<p>&emsp;&emsp;<strong>結論來說server端那邊還是要開權限給我們，我們才能抓取他們的資料。 他們如果不開，我們怎樣做都沒有用的!</strong></p>
-<p>最後分享兩篇文章</p>
+            <p>上次完成簡單登入系統後，就忍不住想繼續加功能，這次的加強我主要完成三件事</p>
 <ol>
-<li><a href="http://eddychang.me/blog/16-javascript/61-callback-example.html" target="_blank" rel="external">Callback function</a></li>
-<li><a href="http://eddychang.me/blog/16-javascript/57-node-js-error-first-callback.html" target="_blank" rel="external">Error-first Callback </a></li>
+<li><strong>使用cookie/session</strong></li>
+<li><strong>幫密碼的儲存加密</strong></li>
+<li><strong>防止SQL Injection和XSS</strong></li>
 </ol>
+<a id="more"></a>
+<hr>
+<h4 id="1-使用cookie-session"><a href="#1-使用cookie-session" class="headerlink" title="1. 使用cookie/session"></a>1. 使用cookie/session</h4><p>&emsp;&emsp;在使用cookie/session之前，必須先了解他們是甚麼? 這裡有一篇講得蠻清楚<a href="http://blog.webgolds.com/view/353" target="_blank" rel="external">Cookie與 Session 的基本原理</a>，最明顯的差異就是cookie存在client端，session則是存在server端。 就我自己看完的理解，我做簡單的介紹</p>
+<ol>
+<li><p><strong>為甚麼要有cookie/session?</strong><br>&emsp;&emsp;因為http是<strong>stateless protocol</strong>，伺服器不會去記得你。也就是說當你瀏覽了某個網頁，現在把網頁關掉再次去瀏覽同個網頁，伺服器並不會記得你之前來過，為了讓使用者與Web的互動更加有用，於是就有了cookie/session的機制誕生。</p>
+</li>
+<li><p><strong>甚麼是cookie?</strong><br>&emsp;&emsp;cookie是由server發給client端的data，而client端的瀏覽器會把cookie保存起來。 之後再次造訪時，就會發送cookie給server，如此server就可以透過cookie知道client之前的狀態。<br>(1) <strong>cookie分為兩種:</strong><br> &emsp;&emsp;a. <strong>沒有時效性</strong>: 沒有時效性的cookie會在瀏覽器關掉的時候就消失<br> &emsp;&emsp;b. <strong>有時效性</strong>: 我們可以幫cookie設時效性，瀏覽器就會把cookie存在硬碟中，直到它過期。<br>(2) <strong>cookie的缺點</strong>: 因為是存在client端，所以使用者可以去修改、竄改它，所以一些比較重要的data就不能存在cookie中，這也是為甚麼session的誕生。</p>
+</li>
+<li><p><strong>甚麼是session?</strong><br>&emsp;&emsp;session資料是存在server中，使用一個很難破解規則的SessionID存在cookie中，下次瀏覽時，就可以透過這個SessionID來得到對應的session資料。</p>
+</li>
+</ol>
+<p>&emsp;&emsp;接下來就是實作，先在一開始如果我沒有set session，我就設定session的cookie時效性一小時<code>session_set_cookie_params(3600,&#39;/&#39;)</code>，<strong>這邊一定要設定時效性，不然我關掉瀏覽器，cookie就會消失，再打開server就找不到那個sessionID</strong>，接著啟動<code>session_start();</code>。每當我成功<strong>log in</strong>或是<strong>sign up</strong>時，就會設<code>$_SESSION[&quot;user_name&quot;] = $username;</code>。 所以之後再訪問login.php時，我就檢查<code>$_SESSION[&quot;user_name&quot;]</code>，有data時表示之前我登入過，我就強制切到<code>dashboard.php</code>也就是會員專區的頁面。反之如果想直接進去dashboard卻發現session沒有data我就讓你回到<code>login.php</code>，先登入再說! 最後就是log out如果選擇logout我就把session cookie<code>(CleanSession(); setcookie(session_name(),&#39;&#39;,time()-3600,&#39;/&#39;);</code>都清掉，下次來就要重新登入。<br><img src="/2017/09/24/login2/screenshot1.jpg" alt="screenshot1.jpg" title=""></p>
+<p>dashboard的畫面<br><img src="/2017/09/24/login2/screenshot2.jpg" alt="screenshot2.jpg" title=""></p>
+<hr>
+<h4 id="2-幫密碼的儲存加密"><a href="#2-幫密碼的儲存加密" class="headerlink" title="2. 幫密碼的儲存加密"></a>2. 幫密碼的儲存加密</h4><p>&emsp;&emsp;密碼的儲存不會像我之前做的那樣就直接明文儲存，一定會經過一些加密，大家可以試想假如某天server被攻破，那麼用萬年密碼跟同樣帳號的其他server就也會被駭，這是非常危險的。所以這個部分我就是要實作密碼的加密。其實並不難，因為PHP已經提供很多好用的function。<br>&emsp;&emsp;加密的原理透過<strong>one way hash</strong>，甚麼是one way hash? 就是<strong>不可逆的雜湊演算法</strong>，你把字串丟進去，他經過運算會output另外一串 然後目前除了暴力法(而且也不可能暴力跑得完)外無法逆推，而且丟相同的字串進去，通過相同的hash演算法出來一定要一樣(不然之後也無法驗證密碼)，而<strong>常用的MD5已經被認為可用暴力法破解</strong>。<br>&emsp;&emsp;但這樣可能還有一個問題，例如一堆人都用1234567當作password，那hash出來的字串都會長那樣，所以就會有有心人士把常見password的hash都算出來，這樣我看我手上的hash表就知道密碼是甚麼了，所以就有<strong>salt</strong>的誕生! 在原密碼前面或後面加上random產生的一串字串，再丟進去hash。<br><img src="/2017/09/24/login2/screenshot3.jpg" alt="screenshot3.jpg" title=""><br><img src="/2017/09/24/login2/screenshot4.jpg" alt="screenshot4.jpg" title=""><br>&emsp;&emsp;這兩個function要搭配在一起，password_hash這個function已經自動幫我們加上了salt，至於verify_password官方說明是這樣說<code>Note that password_hash() returns the algorithm, cost and salt as part of the returned hash. Therefore, all information that&#39;s needed to verify the hash is included in it. This allows the verify function to verify the hash without needing separate storage for the salt or algorithm information.</code>，所以我們也不用去擔心儲存salt的問題可以直接使用。 這樣就完成儲存密碼的加密，實際看資料庫也發現密碼變成亂碼的樣子<br><img src="/2017/09/24/login2/screenshot5.jpg" alt="screenshot5.jpg" title=""></p>
+<hr>
+<h4 id="3-防止SQL-Injection和XSS"><a href="#3-防止SQL-Injection和XSS" class="headerlink" title="3. 防止SQL Injection和XSS"></a>3. 防止SQL Injection和XSS</h4><p>甚麼是SQL Injection?<br>&emsp;&emsp;SQL Injection就是透過input的漏洞去攻擊database，舉個例子我之前可能會寫<code>sql = &#39;SELECT * FROM Users WHERE Name =&#39; + input;</code>，那這時候我的input只要輸入<code>105 OR 1=1</code>，這串就變成<code>sql = &#39;SELECT * FROM Users WHERE Name = 105 or 1=1;</code>，那因為1永遠等於1，hacker就直接可以拿到我的資料! <a href="https://www.w3schools.com/sql/sql_injection.asp" target="_blank" rel="external">SQL Injection介紹</a></p>
+<p>甚麼是XSS?<br>&emsp;&emsp;XSS的全名是(<strong>Cross-site scripting</strong>)，XSS攻擊利用使用者可以輸入文字的地方，透過開發者的漏洞，在Web網頁上插入惡意的程式碼，以達到一些特殊目的。 最簡單的例子可能就是有個網頁程式碼<code>您輸入的是: &lt;input type=&quot;&quot;&gt;</code> 這時候我可能input打上<code>&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt;</code>之類，就會跳出警告，類似這種手法可以更深層的做到一些攻擊。 <a href="https://blog.davidh83110.com/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8/%E9%A7%AD%E5%AE%A2%E6%8A%80%E8%A1%93/owasp%20top10/2016/10/10/xss.html" target="_blank" rel="external">XSS攻擊介紹</a></p>
+<p>&emsp;&emsp;為了防止SQL Injection攻擊，我把抓取資料庫資料的程式碼重寫，利用mysqli的prepare和bind parameters。有聽說可能用php的PDO更好，這可能是我下次更新會做的。 至於XSS的問題，目前看起來我的網頁在使用POST傳輸資料的情況下還沒有太大問題。<br><img src="/2017/09/24/login2/screenshot6.jpg" alt="screenshot6.jpg" title=""></p>
+<p>&emsp;&emsp;這次的更新大概就是這樣! <a href="https://github.com/guachikuo/signup_login_system" target="_blank" rel="external">GitHub上的原始碼</a></p>
 
             
         </div>
@@ -202,7 +213,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/18/feic5/"  data-tooltip="Frontend Intermediate Course 5">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -210,7 +221,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/17/feic4/" data-tooltip="Frontend Intermediate Course 4 (一)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/22/login1/" data-tooltip="後端能力培養(一) - 實作簡單登入系統">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -228,7 +239,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -236,7 +247,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -244,7 +255,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -284,7 +295,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/18/feic5/"  data-tooltip="Frontend Intermediate Course 5">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -292,7 +303,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/17/feic4/" data-tooltip="Frontend Intermediate Course 4 (一)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/22/login1/" data-tooltip="後端能力培養(一) - 實作簡單登入系統">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -310,7 +321,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -318,7 +329,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -326,7 +337,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -351,7 +362,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
                 </a>
             </li>
@@ -359,7 +370,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-twitter"></i><span>Share on Twitter</span>
                 </a>
             </li>
@@ -367,7 +378,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://guachikuo.github.io/2017/09/18/feic4-2/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://guachikuo.github.io/2017/09/24/login2/">
                     <i class="fa fa-google-plus"></i><span>Share on Google+</span>
                 </a>
             </li>
